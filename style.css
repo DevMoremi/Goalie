@@ -65,3 +65,23 @@ button {
   padding: 7px;
   cursor: pointer;
 }
+.filter-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 12px;
+}
+.filter-buttons button {
+  flex: 1;
+  padding: 10px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+}
+.filter-buttons button:hover {
+ background-color: #007BFF;
+  color: white;
+}
