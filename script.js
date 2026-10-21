@@ -1,8 +1,11 @@
 const taskInput = document.getElementById('taskInput')
 const addTaskButton = document.getElementById('addTaskButton')
 const taskList = document.getElementById('task-list')
+const showActiveTasks = document.getElementById('showActiveTasks')
+const showAllTasks = document.getElementById('showAllTasks')
+const showCompletedTasks = document.getElementById('showCompletedTasks')
 let tasks = []
-// let taskId = 1
+let currentFilter = 'all' // default filter is 'all'
 
 displayData()
 addTaskButton.addEventListener('click', (e) => {
@@ -18,8 +21,6 @@ addTaskButton.addEventListener('click', (e) => {
         title: taskValues,
         completed: false
     }
-    //increment the ID for the next task
-    // taskId++
 
     //store the task to tasks array and the localstorage
     tasks.push(newTask)
@@ -37,9 +38,17 @@ function displayData(){
     //get the tasks from localstorage
     tasks = JSON.parse(localStorage.getItem('task')) || []
 
-    //fix duplicate ids
-    
-    tasks.forEach(task => {
+    //filter tasks to be displayed in sections
+    let taskToDisplay
+    if(currentFilter === 'all'){
+        taskToDisplay = tasks
+    }else if(currentFilter === 'active'){
+        taskToDisplay = tasks.filter(task => !task.completed)
+    }else if(currentFilter === 'completed'){
+        taskToDisplay = tasks.filter(task => task.completed)
+    }
+ 
+    taskToDisplay.forEach(task => {
         // display the task
        const listElement = document.createElement('li')
    
@@ -75,7 +84,6 @@ function displayData(){
        }
        localStorage.setItem('task',JSON.stringify(tasks))
        console.log('check', tasks)
-   
        })
        
        //create the delete button
@@ -104,10 +112,10 @@ function displayData(){
            localStorage.setItem('task', JSON.stringify(tasks))
    
            listElement.remove()
-           console.log('tas', tasks)
        })
-        
     });
+
+
 
 }
 
@@ -120,5 +128,17 @@ function getlastTaskId(){
         return 1
     }
 }
+showActiveTasks.addEventListener('click', ()=>{
+    currentFilter = 'active'
+    displayData()
+})
+showAllTasks.addEventListener('click', ()=>{
+    currentFilter = 'all'
+    displayData()
+})
+showCompletedTasks.addEventListener('click', ()=>{
+    currentFilter = 'completed'
+    displayData()
+})
 
 
