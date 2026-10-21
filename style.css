@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+form {
+  display: flex;
+  gap: 8px;
+}
+
+form>input {
+  flex: 1;
+  padding: 10px;
+}
+
+button {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+#task-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+#task-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.task-content span {
+  overflow-wrap: anywhere;
+}
+
+.task-content input[type="checkbox"] {
+  flex-shrink: 0;
+  order: -1;
+}
+
+#task-list li >button {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 5px;
+  padding: 7px;
+  cursor: pointer;
+}

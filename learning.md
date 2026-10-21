@@ -1,0 +1,4 @@
+//to handle deletion efficiently, the values have to have distinct ids and to be able to achieve that, an array of objects is best.//
+when using filter() or any array methods, your argument needs to be stored in a variable else you have effected no change. remember it returns a new array not replace your original array 
+filter() is only going to return the data that passes your condition
+in a case,where you are managing a chunk of related data, and you're to organize,delete,add or manipulate the data; an array of objects is best cos it will allow the grouping of all the info that belongs to one task instead of spreading them across separate arrays where the problem of information associating wih the wrong data might happen.
