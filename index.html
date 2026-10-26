@@ -8,13 +8,15 @@
 </head>
 <body>
     <main>
-        <h1>Todo App</h1>
+        <h1>Your game plan.</h1>
+        <p>A little progress goes a long way</p>
+        <p id="taskCount"></p>
         <form>
             <input type="text" id="taskInput" placeholder="Task">
             <button id="addTaskButton">Add</button>
         </form>
         <div class="filter-buttons">
-            <button id="showAllTasks" class="active-filter">All</button>
+            <button id="showAllTasks">All <span id="allTasks"></span></button>
             <button id="showActiveTasks">Active</button>
             <button id="showCompletedTasks">Completed</button>
             
