@@ -4,6 +4,7 @@ const taskList = document.getElementById('task-list')
 const showActiveTasks = document.getElementById('showActiveTasks')
 const showAllTasks = document.getElementById('showAllTasks')
 const showCompletedTasks = document.getElementById('showCompletedTasks')
+const taskCounter = document.getElementById('taskCount')
 let tasks = []
 let currentFilter = 'all' // default filter is 'all'
 
@@ -47,6 +48,16 @@ function displayData(){
     }else if(currentFilter === 'completed'){
         taskToDisplay = tasks.filter(task => task.completed)
     }
+
+    //add task counter
+    const totalTasks = tasks.length
+    const uncompletedTasks = tasks.filter(task => !task.completed).length
+    const completedTask = tasks.filter(task => task.completed).length
+    showAllTasks.textContent = `All (${totalTasks})`
+    showActiveTasks.textContent = `Active (${uncompletedTasks})`
+    showCompletedTasks.textContent = `Completed (${completedTask})`
+    // taskCounter.textContent = `${totalTasks} tasks, ${uncompletedTasks} tasks left, ${completedTask} tasks left`
+    
  
     taskToDisplay.forEach(task => {
         // display the task
@@ -83,7 +94,7 @@ function displayData(){
            taskTitle.style.textDecoration = 'unset';
        }
        localStorage.setItem('task',JSON.stringify(tasks))
-       console.log('check', tasks)
+       displayData()
        })
        
        //create the delete button
@@ -111,12 +122,9 @@ function displayData(){
            tasks = tasks.filter(item => item.id !== task.id)
            localStorage.setItem('task', JSON.stringify(tasks))
    
-           listElement.remove()
+           displayData()
        })
     });
-
-
-
 }
 
 function getlastTaskId(){
@@ -140,5 +148,3 @@ showCompletedTasks.addEventListener('click', ()=>{
     currentFilter = 'completed'
     displayData()
 })
-
-
